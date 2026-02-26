@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+ollama
+python-dotenv
+requests
+APScheduler==3.11.2
+beautifulsoup4==4.14.3
+cassandra-driver==3.29.3
+lxml==6.0.2
+ollama==0.6.1
+playwright==1.58.0
+psycopg2==2.9.11
+pydantic==2.12.5
+SQLAlchemy==2.0.47
+
+

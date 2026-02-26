@@ -16,7 +16,6 @@ from db_log_handler import CassandraHandler
 from sqlalchemy import create_engine, text
 
 
-
 DB_NAME = "crawler_db"
 DB_USER = "postgres"
 DB_PASS = 12345
@@ -74,11 +73,10 @@ def save_article(article):
         """), article)
 
 
-
 # Create DB if missing
 create_database_if_not_exists()
 init_db()
-# ================= LOGGING SETUP =================
+=
 
 Path("logs").mkdir(exist_ok=True)
 
@@ -93,12 +91,12 @@ db_handler = CassandraHandler()
 db_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(message)s"))
 logger.addHandler(db_handler)
 
-# ================= CONFIG =================
+
 
 BASE_URL = "https://www.moneycontrol.com/news/business/markets/page-{}/"
 OUTPUT_FILE = "articles.jsonl"
 
-# ================= SCHEMA =================
+
 
 class ArticleSchema(BaseModel):
     url: str
@@ -121,7 +119,7 @@ class ArticleSchema(BaseModel):
             raise ValueError("Content too small")
         return v
 
-# ================= HELPERS =================
+
 
 def clean_text(text: str):
     return re.sub(r"\s+", " ", text).strip()
@@ -151,7 +149,7 @@ def append_json(article):
         logger.error(f"JSON save failed: {str(e)}")
 
 
-# ================= PARSE ARTICLE =================
+
 
 def parse_article(html, url):
     try:
@@ -188,7 +186,7 @@ def parse_article(html, url):
         return None
 
 
-# ================= READ MORE =================
+
 
 
 async def expand_read_more(page):
@@ -213,7 +211,7 @@ async def expand_read_more(page):
         return False
 
 
-# ================= SCRAPING =================
+
 
 async def scrape_article(page, url):
     try:
@@ -263,7 +261,7 @@ async def get_links(page, page_no):
     return list(links)
 
 
-# ================= MAIN =================
+
 
 async def crawl():
     logger.info("Crawler started")

@@ -51,4 +51,6 @@ class CassandraLogger:
                     (datetime.now(timezone.utc), level, message, url)
                 )
         except Exception as e:
-            print("Cassandra log failed:", e) 
+            print("Cassandra log failed:", e)
+
+            
